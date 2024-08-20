@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dns-test
+  namespace: ingress-nginx
+spec:
+  containers:
+  - name: busybox
+    image: busybox:1.28
+    command:
+      - sleep
+      - "3600"
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
