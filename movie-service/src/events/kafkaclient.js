@@ -5,7 +5,10 @@ export class KafkaService{
     constructor(){
         this.kafka = new Kafka({
             clientId:'rollin-kafka',
-            brokers : ['127.0.0.1:9092']
+            brokers : [
+                'kafka-0.kafka-svc.kafka.svc.cluster.local:9092',
+                'kafka-1.kafka-svc.kafka.svc.cluster.local:9092',
+                'kafka-2.kafka-svc.kafka.svc.cluster.local:9092']
         })
         this.producer = this.kafka.producer()
         this.consumer = this.kafka.consumer({groupId:'movie-svc'})

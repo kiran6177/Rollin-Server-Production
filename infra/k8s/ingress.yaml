@@ -8,21 +8,57 @@ kind: Ingress
 metadata:
   name: ingress-svc
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: 'true'
-    nginx.ingress.kubernetes.io/connection-proxy-header: "true"
+    nginx.ingress.kubernetes.io/proxy-connection-header: "true"
+    nginx.org/proxy-read-timeout: "3600"
+    nginx.org/proxy-send-timeout : "3600"
     nginx.ingress.kubernetes.io/upgrade: "websocket"
-    nginx.ingress.kubernetes.io/websocket-services: "auth-svc"
+    nginx.org/websocket-services: "auth-svc"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "http://localhost:3000, https://rollin-iota.vercel.app"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "route"
+    nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
 spec:
   rules:
   - host: rollin.online
     http:
       paths:
-      - pathType: Prefix
+      - pathType: ImplementationSpecific
         path: "/api/auth/?(.*)"
         backend:
           service:
             name: auth-svc
             port:
              number: 4001
+      - pathType: ImplementationSpecific
+        path: "/api/booking/?(.*)"
+        backend:
+          service:
+            name: booking-svc
+            port:
+             number: 4004
+      - pathType: ImplementationSpecific
+        path: "/api/movie/?(.*)"
+        backend:
+          service:
+            name: movie-svc
+            port:
+             number: 4002
+      - pathType: ImplementationSpecific
+        path: "/api/theatre/?(.*)"
+        backend:
+          service:
+            name: theatre-svc
+            port:
+             number: 4003
+      - pathType: ImplementationSpecific
+        path: "/socket.io/"
+        backend:
+          service:
+            name: auth-svc
+            port:
+             number: 4001
+  ingressClassName: nginx
 
+  #RUN - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml

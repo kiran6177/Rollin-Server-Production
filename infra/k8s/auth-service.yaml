@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: rollin-auth-depl
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: auth
@@ -103,8 +103,8 @@ spec:
               key: TWILIO_VERIFY_SID
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "512Mi"
+            cpu: "1000m"
         ports:
         - containerPort: 4001
 ---
@@ -121,4 +121,4 @@ spec:
     protocol: TCP
     port: 4001
     targetPort: 4001
-
+  sessionAffinity: ClientIP
