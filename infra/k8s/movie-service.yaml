@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: rollin-movie-depl
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: movie
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: movie
-        image: kiran6177/rollin-movie
+        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-movie
         env:
         - name: PORT
           valueFrom:
@@ -62,9 +62,12 @@ spec:
               name: movie-secret
               key: MONGOURL
         resources:
+          requests:
+            cpu: "150m"  
+            memory: "256Mi"  
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            cpu: "150m"  
+            memory: "256Mi"
         ports:
         - containerPort: 4002
 ---

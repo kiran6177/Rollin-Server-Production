@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: rollin-theatre-depl
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: theatre
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: theatre
-        image: kiran6177/rollin-theatre
+        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-theatre
         env:
         - name: PORT
           valueFrom:
@@ -57,9 +57,12 @@ spec:
               name: theatre-secret
               key: MONGOURL
         resources:
+          requests:
+            cpu: "150m"  
+            memory: "256Mi"  
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            cpu: "150m"  
+            memory: "256Mi"
         ports:
         - containerPort: 4003
 ---

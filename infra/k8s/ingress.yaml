@@ -16,49 +16,52 @@ metadata:
     nginx.org/websocket-services: "auth-svc"
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-origin: "http://localhost:3000, https://rollin-iota.vercel.app"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/session-cookie-name: "route"
     nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
 spec:
+  ingressClassName: "nginx"
   rules:
-  - host: rollin.online
+  - host: womensnest.online
     http:
       paths:
-      - pathType: ImplementationSpecific
-        path: "/api/auth/?(.*)"
+      - pathType: Prefix
+        path: "/api/auth/"
         backend:
           service:
             name: auth-svc
             port:
              number: 4001
-      - pathType: ImplementationSpecific
-        path: "/api/booking/?(.*)"
+      - pathType: Prefix
+        path: "/api/booking/"
         backend:
           service:
             name: booking-svc
             port:
              number: 4004
-      - pathType: ImplementationSpecific
-        path: "/api/movie/?(.*)"
+      - pathType: Prefix
+        path: "/api/movie/"
         backend:
           service:
             name: movie-svc
             port:
              number: 4002
-      - pathType: ImplementationSpecific
-        path: "/api/theatre/?(.*)"
+      - pathType: Prefix
+        path: "/api/theatre/"
         backend:
           service:
             name: theatre-svc
             port:
              number: 4003
-      - pathType: ImplementationSpecific
+      - pathType: Prefix
         path: "/socket.io/"
         backend:
           service:
             name: auth-svc
             port:
              number: 4001
-  ingressClassName: nginx
 
   #RUN - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml

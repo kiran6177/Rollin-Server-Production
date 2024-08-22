@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: rollin-booking-depl
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: booking
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: booking
-        image: kiran6177/rollin-booking
+        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-booking
         env:
         - name: PORT
           valueFrom:
@@ -67,9 +67,12 @@ spec:
               name: booking-secret
               key: MONGOURL
         resources:
+          requests:
+            cpu: "150m"  
+            memory: "256Mi"  
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            cpu: "150m"  
+            memory: "256Mi"
         ports:
         - containerPort: 4004
 ---
