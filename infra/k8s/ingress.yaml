@@ -15,13 +15,11 @@ metadata:
     nginx.ingress.kubernetes.io/upgrade: "websocket"
     nginx.org/websocket-services: "auth-svc"
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/cors-allow-origin: "http://localhost:3000, https://rollin-iota.vercel.app"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "http://localhost:3000,"
     nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
     nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization"
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
-    nginx.ingress.kubernetes.io/affinity: "cookie"
-    nginx.ingress.kubernetes.io/session-cookie-name: "route"
-    nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: "nginx"
   rules:
@@ -56,12 +54,23 @@ spec:
             name: theatre-svc
             port:
              number: 4003
-      - pathType: Prefix
+      - pathType: ImplementationSpecific
         path: "/socket.io/"
         backend:
           service:
             name: auth-svc
             port:
              number: 4001
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: client-svc
+            port:
+             number: 3000
+  tls:
+  - hosts:
+    - womensnest.online
+    secretName: rollin-tls
 
   #RUN - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml

@@ -39,7 +39,8 @@ export class UserShowByMovieGet{
                     return updatedShow 
                 })
                 console.log(resultData);
-                return resultData[0] === undefined ? [] : resultData
+                return resultData[0] !== undefined ? resultData?.filter(el=>el !== undefined) : []
+
             }else{
                 const error = new Error()
                 error.statusCode = 400;

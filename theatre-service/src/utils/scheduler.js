@@ -2,17 +2,20 @@ import schedule from 'node-schedule';
 import { KafkaService } from '../events/kafkaclient.js';
 import { NOTIFICATION_TOPIC, TYPE_NOTIFICATION_CREATED } from '../events/config.js';
 import { MongoScreenRepository } from '../adapters/repositories/index.js';
+import { fromZonedTime } from 'date-fns-tz'
 
 export const scheduleEnrollmentEndNotification = (date,theatre_id,moviedata,screendata)=>{
     try {
+        const scheduledDate = fromZonedTime(date,'Asia/Kolkata');
+
         const dataToPub = {
             reciever_id:theatre_id,
             type:'ENROLLMENT_ENDED',
             moviedata,
             screendata,
-            createdAt:date
+            createdAt:scheduledDate
         }
-        const job = schedule.scheduleJob(date,async()=>{
+        const job = schedule.scheduleJob(scheduledDate,async()=>{
             try {
                 //CHECK_FOR_MOVIE_EXISTS_AND_ENROLLMENT_IS_ABOUT_TO_END
                 const screenRepository = new MongoScreenRepository();
@@ -37,12 +40,12 @@ export const scheduleEnrollmentEndNotification = (date,theatre_id,moviedata,scre
                     }
                 }
                 
-                console.log("JOB EXECUTED AT : ",date);
+                console.log("JOB EXECUTED AT : ",scheduledDate);
             } catch (error) {
                 console.log("ERROR OCCURED ON JOB",error);
             }
         })
-        console.log("ENROLLMENT ENDING NOTIFICATION SCHEDULED FOR ",date);
+        console.log("ENROLLMENT ENDING NOTIFICATION SCHEDULED FOR ",scheduledDate);
     } catch (error) {
         console.log(error);
     }

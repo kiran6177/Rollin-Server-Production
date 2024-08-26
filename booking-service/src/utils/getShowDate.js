@@ -1,3 +1,5 @@
+import { fromZonedTime } from 'date-fns-tz';
+
 export const getShowDate = (reserved_date,showtime)=>{
     const time = showtime.replace(/[A-Za-z\s]/g,'')
     const zone = showtime.replace(/[^A-Za-z\s]/g,"")
@@ -12,5 +14,5 @@ export const getShowDate = (reserved_date,showtime)=>{
     const showDate = new Date(reserved_date)
     showDate.setMinutes(minute)
     showDate.setHours(hour)
-    return showDate
+    return fromZonedTime(showDate,'Asia/Kolkata')
 }

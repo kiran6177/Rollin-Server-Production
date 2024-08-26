@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rollin-client-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: client
+        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-client
+        env:
+        - name: REACT_APP_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: client-secret
+              key: REACT_APP_CLIENT_ID
+        - name: REACT_APP_MAPS_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: client-secret
+              key: REACT_APP_MAPS_API_KEY
+        - name: REACT_APP_MAP_ID
+          valueFrom:
+            secretKeyRef:
+              name: client-secret
+              key: REACT_APP_MAP_ID
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: client
+  ports:
+  - name: client
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
