@@ -23,7 +23,7 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: womensnest.online
+  commonName: rollinmovie.online
   dnsNames:
-    - womensnest.online
+    - rollinmovie.online
 #RUN FOR CERTIFICATE INSTALL -  https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.yaml

@@ -23,7 +23,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-  - host: womensnest.online
+  - host: rollinmovie.online
     http:
       paths:
       - pathType: Prefix
@@ -70,7 +70,7 @@ spec:
              number: 3000
   tls:
   - hosts:
-    - womensnest.online
+    - rollinmovie.online
     secretName: rollin-tls
 
   #RUN - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
