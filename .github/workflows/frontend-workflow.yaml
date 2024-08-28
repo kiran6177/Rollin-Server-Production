@@ -1,0 +1,32 @@
+name: Build & Deploy Frontend
+
+on:
+  push:
+    branches: 
+      - "master"
+    paths: 
+      - "frontend/**"
+
+jobs:
+  built-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v2
+
+      - name: install gcloud cli
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
+          service_account_key: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          install_components: 'gke-gcloud-auth-plugin'
+          export_default_credentials: true
+          
+      - name: build and push to artifact registry
+        env:
+          GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
+        run: |
+          gcloud auth configure-docker asia-south1-docker.pkg.dev
+          cd frontend
+          docker build -t asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client .
+          docker push asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client
