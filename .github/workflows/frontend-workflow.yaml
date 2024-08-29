@@ -29,7 +29,11 @@ jobs:
         run: |
           gcloud auth configure-docker asia-south1-docker.pkg.dev
           cd frontend
-          docker build -t asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client .
+          docker build \
+            --build-arg REACT_APP_CLIENT_ID=${{ secrets.REACT_APP_CLIENT_ID }} \
+            --build-arg REACT_APP_MAPS_API_KEY=${{ secrets.REACT_APP_MAPS_API_KEY }} \
+            --build-arg REACT_APP_MAP_ID=${{ secrets.REACT_APP_MAP_ID }} \
+            -t asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client .
           docker push asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client
 
       - name: Install gke-gcloud-auth-plugin
