@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: booking
-        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-booking
+        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-booking:latest
         env:
         - name: PORT
           valueFrom:
