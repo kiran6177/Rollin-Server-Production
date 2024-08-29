@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: client
-        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-client
+        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-client:latest
         env:
         - name: REACT_APP_CLIENT_ID
           valueFrom:

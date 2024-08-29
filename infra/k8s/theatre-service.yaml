@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: theatre
-        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-theatre
+        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-theatre:latest
         env:
         - name: PORT
           valueFrom:

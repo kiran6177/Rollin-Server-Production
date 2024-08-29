@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-auth
+        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-auth:latest
         env:
         - name: CLIENT_ID
           valueFrom:
