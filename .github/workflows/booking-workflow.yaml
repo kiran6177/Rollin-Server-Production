@@ -1,11 +1,11 @@
-name: Build & Deploy Frontend
+name: Build & Deploy Booking-svc
 
 on:
   push:
     branches: 
       - "master"
     paths: 
-      - "frontend/**"
+      - "booking-service/**"
 
 jobs:
   built-deploy:
@@ -28,9 +28,9 @@ jobs:
           GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
         run: |
           gcloud auth configure-docker asia-south1-docker.pkg.dev
-          cd frontend
-          docker build -t asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client .
-          docker push asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client
+          cd booking-service
+          docker build -t asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-booking .
+          docker push asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-booking
 
       - name: Install gke-gcloud-auth-plugin
         run: |
@@ -42,4 +42,4 @@ jobs:
         run: |
           gcloud container clusters get-credentials rollin-cluster --zone asia-south1-a --project $GOOGLE_PROJECT_ID
           cd infra/k8s
-          kubectl apply -f client-service.yaml
+          kubectl apply -f booking-service.yaml
