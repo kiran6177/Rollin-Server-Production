@@ -46,7 +46,7 @@ export class UserRecommendedMoviesGet{
                         m.movie_id === movie.movie_id
                     ))
                 );
-                console.log("RECCCOOO",recommendedMovies);
+                console.log("RECCCOOOMMMMM",recommendedMovies);
             }else{
                 const error = new Error()
                 error.statusCode = 400;
