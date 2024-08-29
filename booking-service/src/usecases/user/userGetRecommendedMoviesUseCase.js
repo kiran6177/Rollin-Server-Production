@@ -56,6 +56,7 @@ export class UserRecommendedMoviesGet{
             if(userdata?.id){
                 let genres = new Set()
                 const ordersData = await this.orderRepository.getOrdersByUserIdWithPage(userdata.id,5,0)//last five orders
+                console.log("ORDERSDATA",ordersData);
                 if(ordersData?.length > 0){
                     ordersData.forEach(order=>{
                         for(let genre of order?.movie?.genres){
