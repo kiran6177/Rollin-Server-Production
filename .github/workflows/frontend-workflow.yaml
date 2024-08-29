@@ -32,3 +32,11 @@ jobs:
           cd frontend
           docker build -t asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client .
           docker push asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client
+
+      - name: deploy to GKE
+        env:
+          GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
+        run: |
+          gcloud container clusters get-credentials rollin-cluster --zone asia-south1-a --project $GOOGLE_PROJECT_ID
+          cd infra/k8s
+          kubectl apply -f client-service.yaml
