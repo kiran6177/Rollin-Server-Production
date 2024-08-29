@@ -8,7 +8,6 @@ function ScreenMapModal({isOpen,theatre,set}) {
     useEffect(()=>{
         if(theatre && isOpen){
             loads()
-            console.log("MAPS",process.env.REACT_APP_MAPS_API_KEY,process.env.REACT_APP_MAP_ID);
         }
     },[theatre,isOpen])
 
