@@ -96,7 +96,7 @@ export class MongoOrderRepository extends OrderRepository{
     async getOrdersByUserIdWithPage(id,limit,skip){
         try {
             return await OrderModel.find({user_id:new ObjectId(id)}).sort({createdAt:-1}).skip(skip).limit(limit)
-            //.populate('theatre_id')
+            //.populate('theatre_id') 
             } catch (err) {
             console.log(err);
             const error = new Error();

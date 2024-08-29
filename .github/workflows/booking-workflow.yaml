@@ -43,3 +43,4 @@ jobs:
           gcloud container clusters get-credentials rollin-cluster --zone asia-south1-a --project $GOOGLE_PROJECT_ID
           cd infra/k8s
           kubectl apply -f booking-service.yaml
+          kubectl rollout restart deployment/rollin-booking-depl
