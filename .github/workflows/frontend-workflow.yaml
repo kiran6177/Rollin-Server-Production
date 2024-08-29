@@ -33,6 +33,11 @@ jobs:
           docker build -t asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client .
           docker push asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/kiran6177/rollin-client
 
+      - name: Install gke-gcloud-auth-plugin
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-cloud-sdk-gke-gcloud-auth-plugin
+          
       - name: deploy to GKE
         env:
           GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
