@@ -11,7 +11,7 @@ export class UnreadGet{
     async execute(id){
         try {
             const notificationsList = await this.notificationRepository.getUnreadNotificationsByReciever(id);
-            console.log(notificationsList);
+            console.log("UNREAD",notificationsList);
             const notificationWithMovieImage = [];
             for(let notificationObj of notificationsList){
                 let notification = notificationObj.toObject()

@@ -10,6 +10,6 @@ const startServer = ()=>{
     app.listen(PORT,()=>{
         console.log("Movie Listening on ",PORT);
     })
-}
+} 
 
 startServer() 

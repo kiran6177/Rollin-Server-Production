@@ -125,8 +125,8 @@ function ScreenMovieSection() {
         <div className='pt-28 px-12  min-h-[10rem] '>
             <div className='border-2 border-[#f6ae2d] rounded-sm bg-black '>
                 <div className='border-b-2 border-[#f6ae2d] py-6 px-10 flex flex-col gap-4'>
-                    <h5 className='text-[#f6ae2d] text-2xl sm:text-4xl font-semibold tracking-widest flex gap-5 items-center'>{singleTheatre?.name} <FaInfoCircle onClick={()=>setShowImage(true)} className='text-[#cdcdcdd7] w-[1.3rem] hover:text-white transition-all duration-150 ease' /> </h5>
-                    <h6 className='text-white text-md sm:text-base'>{singleTheatre?.address?.completeLocation}</h6>
+                    <h5 className='text-[#f6ae2d] text-xl sm:text-4xl font-semibold tracking-widest flex gap-5 items-center'>{singleTheatre?.name} <FaInfoCircle onClick={()=>setShowImage(true)} className='text-[#cdcdcdd7] w-[1.3rem] hover:text-white transition-all duration-150 ease' /> </h5>
+                    <h6 className='text-white text-xs sm:text-base'>{singleTheatre?.address?.completeLocation}</h6>
                     
                     
                 </div>

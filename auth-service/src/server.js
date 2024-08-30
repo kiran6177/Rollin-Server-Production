@@ -10,6 +10,6 @@ const startServer = ()=>{
     server.listen(PORT,()=>{
         console.log("Auth Listening on ",PORT);
     })
-}
+} 
 
 startServer() 

@@ -58,7 +58,7 @@ export class UserProcessPayment{
                 notifyDate.setHours(notifyDate.getHours() - 2)
                 // const notifyDate = new Date()
                 // notifyDate.setHours(13,31,0,0)
-                console.log(notifyDate);
+                console.log("NOTIFYDATE",notifyDate);
                 scheduleBookingNotification(notifyDate,updatedOrder)
                 return {...updatedOrder.toObject(),movie:movieWithPic,qr_url:url}
             }else{
