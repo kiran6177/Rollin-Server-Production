@@ -58,11 +58,11 @@ spec:
               key: MONGOURL
         resources:
           requests:
-            cpu: "100m"  
-            memory: "128Mi"  
+            cpu: "150m"  
+            memory: "256Mi"  
           limits:
-            cpu: "100m"  
-            memory: "128Mi"
+            cpu: "250m"  
+            memory: "512Mi"
         ports:
         - containerPort: 4003
 ---

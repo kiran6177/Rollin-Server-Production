@@ -6,7 +6,7 @@ dotenv.config();
 const MONGOURL = process.env.MONGOURL
 export const connection = ()=>{
   
-    mongoose.connect(MONGOURL)
+    mongoose.connect(MONGOURL,{enableUtf8Validation:true})
     mongoose.connection.on("connected", () => {
         console.log("Auth Connected to MongoDB");
       })

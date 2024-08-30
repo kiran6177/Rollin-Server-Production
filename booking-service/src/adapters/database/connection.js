@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 export const connection = ()=>{
-    mongoose.connect(process.env.MONGOURL,{enableUtf8Validation:false})
+    mongoose.connect(process.env.MONGOURL,{enableUtf8Validation:true})
     mongoose.connection.on("connected", () => {
         console.log("Booking Connected to MongoDB");
       })
