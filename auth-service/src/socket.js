@@ -99,7 +99,7 @@ export const connectSocket = (http) => {
 };
 
 export const sendUserNotification = (notification, reciever_id) => {
-  console.log("SEND-NOTI");
+  console.log("SEND-NOTI",usersWithSocketId.get(reciever_id));
   io.to(usersWithSocketId.get(reciever_id)).emit('new-notifications',notification);
 };
 

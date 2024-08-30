@@ -42,6 +42,7 @@ function SocketProvider({children}) {
       }
       }
     if(socket && userToken){
+        console.log("PROVIDER",socket);
         socket.emit('connect-user',userData?.id)
         socket?.on('has-unread-notifications',handleUnreadUpdate) 
     }

@@ -71,6 +71,7 @@ function Navbar({hide}) {
         setShowNotification(false)
       },6000)
     }
+    console.log("NEW-NOTI-LISTEN");
     socket?.on('new-notifications',handleNewNotification)
 
     return ()=>{
