@@ -19,7 +19,7 @@ function ScreenMovieSection() {
     const [showImage,setShowImage] = useState(false)
     const [singleTheatre,setSingleTheatre] = useState(null);
 
-    const [movieShows,setMovieShows] = useState(null)
+    const [datesObj,setDatesObj] = useState({})
 
     const [month,setMonth] = useState('');
     const [dates,setDates] = useState([]);
@@ -34,12 +34,16 @@ function ScreenMovieSection() {
         console.log("TODAY",date);
         setMonth(month)
         const newDates = []
+        const newDatesObj = {}
         for(let i = 0 ; i < 4 ; i++){
             let currentDate = new Date(date);
             currentDate.setDate(currentDate.getDate() + i);
             let filteredDate = currentDate.toString().split(' ')[0] + ' ' + currentDate.toString().split(' ')[2]
+            newDatesObj[filteredDate] = currentDate
             newDates.push(filteredDate)
         }
+        console.log(newDatesObj);
+        setDatesObj(newDatesObj)
         setDates(newDates)
     }
 
@@ -53,12 +57,11 @@ function ScreenMovieSection() {
 
     useEffect(()=>{
         if(selectedDate){
-            const day = selectedDate.split(' ')[1];
-            const currentDate = new Date();
-            currentDate.setUTCDate(day);
-            currentDate.setUTCHours(0,0,0,0);
-            const datetoAdd = currentDate.toISOString()
-            const data = {date:datetoAdd,theatre_id}
+            const dateOf = new Date(datesObj[selectedDate])
+            dateOf.setDate(dateOf.getDate() + 1)
+            dateOf.setUTCHours(0,0,0,0)
+            const dateOfT = dateOf.toISOString()
+            const data = {date:dateOfT,theatre_id}
             dispatch(userGetShowData(data))
         }
     },[selectedDate])
@@ -86,36 +89,23 @@ function ScreenMovieSection() {
             console.log("WROKED");
             dispatch(userGetSingleTheatre({theatre_id}))
             if(selectedDate){
-                const now = new Date()
-                const todayDay = now.getDate();
-                const day = selectedDate.split(' ')[1];
-                const currentDate = new Date();
-                if(Math.abs(todayDay - parseInt(day)) > 4){
-                    currentDate.setUTCMonth(currentDate.getUTCMonth()+1)
-                }
-                currentDate.setUTCDate(day);
-                currentDate.setUTCHours(0,0,0,0);
-                const datetoAdd = currentDate.toISOString()
-                const data = {date:datetoAdd,theatre_id}
+                const dateOf = new Date(datesObj[selectedDate])
+                dateOf.setDate(dateOf.getDate() + 1)
+                dateOf.setUTCHours(0,0,0,0)
+                const dateOfT = dateOf.toISOString()
+                const data = {date:dateOfT,theatre_id}
                 dispatch(userGetShowData(data))
             }
         }
     },[theatre_id])
 
     const handleShowBooking = (show)=>{
-        const now = new Date()
-        const todayDay = now.getDate();
-        const day = selectedDate.split(' ')[1];
-        const currentDate = new Date();
-        if(Math.abs(todayDay - parseInt(day)) > 4){
-            currentDate.setUTCMonth(currentDate.getUTCMonth()+1)
-        }
-        currentDate.setUTCDate(day);
-        currentDate.setUTCHours(0,0,0,0);
-        const datetoAdd = currentDate.toISOString()
-        console.log(datetoAdd);
+        const dateOf = new Date(datesObj[selectedDate])
+        dateOf.setDate(dateOf.getDate() + 1)
+        dateOf.setUTCHours(0,0,0,0)
+        const dateOfT = dateOf.toISOString()
         console.log(show);
-        navigate(`/screenwithmovies/show?show_id=${show?.show_id}&date=${datetoAdd}&theatre_id=${theatre_id}`,{state:{redirectURL:`/screenwithmovies/show?show_id=${show?.show_id}&date=${datetoAdd}&theatre_id=${theatre_id}`}})
+        navigate(`/screenwithmovies/show?show_id=${show?.show_id}&date=${dateOfT}&theatre_id=${theatre_id}`,{state:{redirectURL:`/screenwithmovies/show?show_id=${show?.show_id}&date=${dateOfT}&theatre_id=${theatre_id}`}})
     }
     if(loading || theatreLoading){
         return <LoadingSpinner/>
@@ -125,8 +115,8 @@ function ScreenMovieSection() {
         <div className='pt-28 px-12  min-h-[10rem] '>
             <div className='border-2 border-[#f6ae2d] rounded-sm bg-black '>
                 <div className='border-b-2 border-[#f6ae2d] py-6 px-10 flex flex-col gap-4'>
-                    <h5 className='text-[#f6ae2d] text-xl sm:text-4xl font-semibold tracking-widest flex gap-5 items-center'>{singleTheatre?.name} <FaInfoCircle onClick={()=>setShowImage(true)} className='text-[#cdcdcdd7] w-[1.3rem] hover:text-white transition-all duration-150 ease' /> </h5>
-                    <h6 className='text-white text-xs sm:text-base'>{singleTheatre?.address?.completeLocation}</h6>
+                    <h5 className='text-[#f6ae2d] text-2xl sm:text-4xl font-semibold tracking-widest flex gap-5 items-center'>{singleTheatre?.name} <FaInfoCircle onClick={()=>setShowImage(true)} className='text-[#cdcdcdd7] w-[1.3rem] hover:text-white transition-all duration-150 ease' /> </h5>
+                    <h6 className='text-white text-md sm:text-base'>{singleTheatre?.address?.completeLocation}</h6>
                     
                     
                 </div>

@@ -44,7 +44,7 @@ export class GetCollections{
                     }
                 }
             }else{
-                for(let {endDate} of dailyRange){
+                for(let {endDate} of dateRanges){
                     let dateString ;
                     if(type === "DAILY"){
                         dateString = endDate.toLocaleDateString('en-US',{month:'long',day:'numeric'})
