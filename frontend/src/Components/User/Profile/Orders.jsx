@@ -158,6 +158,7 @@ function Orders() {
                     </div>
                     {new Date().setUTCHours(0,0,0,0) <= new Date(order.show_date) &&<button onClick={()=>setShowTicket(order)} className='bg-[#f6ae2d] absolute right-0 bottom-0 font-medium px-4 py-1 text-xs rounded-sm tracking-wider'>MORE</button>}
                     <div>
+                      {console.log(Math.abs(getShowDate(order?.show_date,order?.show_time) - new Date()) , new Date() ,"CANCELLLLL",i)}
                       {!order?.refund_id ? (Math.abs(getShowDate(order?.show_date,order?.show_time) - new Date()) < 4 * 60 * 60 * 1000) ? 
                       <div className='relative mb-10 sm:mb-0'>
                         <h4 className='text-white text-sm flex items-center gap-3'><IoInformationCircle onMouseEnter={()=>setShowInfo(true)} onMouseLeave={()=>setShowInfo(false)} className='w-[1.3rem] h-[1.3rem]' /> Cancellation unavailable.</h4> 
