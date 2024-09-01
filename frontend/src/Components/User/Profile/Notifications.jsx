@@ -31,7 +31,6 @@ function Notifications() {
                 }
                 return acc
             },[])
-            console.log(unreadNotificationsIds);
             socket?.emit('read-notifications',unreadNotificationsIds)
         }
     },[notifications])

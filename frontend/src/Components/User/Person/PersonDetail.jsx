@@ -16,7 +16,6 @@ function PersonDetail() {
 
     const {allPersonData} = useSelector(state=>state.userMovie)
     useEffect(()=>{
-        console.log(personid);
         if(allPersonData?.length > 0){
             let personFound = false;
             allPersonData.forEach(person=>{

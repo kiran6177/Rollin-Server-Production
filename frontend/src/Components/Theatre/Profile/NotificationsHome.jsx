@@ -34,7 +34,6 @@ function NotificationsHome() {
                 }
                 return acc
             },[])
-            console.log("THEATREUNREAD",unreadNotificationsIds);
             socket?.emit('read-notifications-theatre',unreadNotificationsIds)
         }
     },[notifications])

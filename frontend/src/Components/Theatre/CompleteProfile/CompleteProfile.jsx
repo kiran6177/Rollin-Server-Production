@@ -96,7 +96,6 @@ function CompleteProfile() {
             setImageData([...imageData ,... Array.from(imageFile)]);
             setImages([...images,...Array.from(imageFile).map(image=>URL.createObjectURL(image))])
         }
-        console.log(imageAddRef.current.files);
     }
 
     const removeImage = (index)=>{
@@ -140,7 +139,6 @@ function CompleteProfile() {
                 filesData.forEach(file=>dataTransfer.items.add(file));
                 return dataTransfer.files;
             }
-            console.log(convertToFile(imageData));
             const filesList = convertToFile(imageData)
             const data = new FormData()
             data.append("formdata",JSON.stringify(dataa));

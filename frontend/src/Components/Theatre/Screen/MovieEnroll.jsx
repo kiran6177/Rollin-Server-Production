@@ -52,9 +52,7 @@ function MovieEnroll() {
     const lang = searchParams.get('lang');
 
     useEffect(()=>{
-      console.log("GGGG");
         if((!genre || genre === '') && (!lang || lang === '')){
-          console.log("Wroke");
           dispatch(resetMovieList())
           dispatch(theatreGetAllMovies({filters:{page:1},token:theatreToken}))
         }else{
@@ -80,7 +78,6 @@ function MovieEnroll() {
       useEffect(()=>{
           let languages = [];
           let genres = [];
-          console.log(page);
         if(filterArray.length === 0){
           setOpen(false)
           dispatch(resetMovieList())
@@ -93,8 +90,6 @@ function MovieEnroll() {
               languages.push(filter.data)
             }
           })
-          console.log(languages);
-          console.log(genres);
           dispatch(resetMovieList())
           dispatch(theatreGetAllMovies({filters:{page:page,languages,genres,search:debouncedValue},token:theatreToken}))
         }
@@ -117,7 +112,6 @@ function MovieEnroll() {
       },[debouncedValue])
 
     const nextPage = ()=>{
-        console.log("next",page);
         let languages = [];
         let genres = [];
         if(filterArray.length > 0){
@@ -128,8 +122,6 @@ function MovieEnroll() {
               languages.push(filter.data)
             }
           })
-          console.log(languages);
-          console.log(genres);
         }
         dispatch(theatreGetAllMovies({filters:{page,languages,genres,search:debouncedValue},token:theatreToken}))
       }

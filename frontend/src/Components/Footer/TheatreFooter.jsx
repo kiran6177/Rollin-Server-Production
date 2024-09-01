@@ -14,7 +14,6 @@ function TheatreFooter() {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        console.log("GENRE");
         if(GENRES?.length > 0){
             let genreIds = []
             let randomGenres = [];

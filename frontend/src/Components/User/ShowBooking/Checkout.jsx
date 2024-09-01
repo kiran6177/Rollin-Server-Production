@@ -66,7 +66,6 @@ function Checkout() {
     }
 
     const handleReload = ()=>{
-        console.log("HI");
         if(orderIdRef.current){
             const data = {order_id:orderIdRef.current}
             dispatch(userPayProcess({data,token:userToken}))
@@ -103,7 +102,6 @@ function Checkout() {
 
     useEffect(()=>{
         if(singleShowData && theatre_id && date){
-            console.log(singleShowData);
             setSingleShow(singleShowData)
             if(!singleMovieDetail || singleMovieDetail?._id != singleShowData?.movie?.movie_id){
                 if(localStorage.getItem('city')){
@@ -157,7 +155,6 @@ function Checkout() {
         if(payment_data){
             async function pay(){
                 const result = await doPayment(payment_data?.payment_status)
-                console.log(result);
                 if(result.error){
                     console.log(result.error);
                     if(payment_data){
@@ -175,7 +172,6 @@ function Checkout() {
                     return
                 }
                 if(result.paymentDetails){
-                    console.log("SUCCESS",result.paymentDetails);
                     if(payment_data){
                         orderIdRef.current = null;
                         const data = {order_id:payment_data?.order_id}
@@ -193,10 +189,8 @@ function Checkout() {
         }
 
         return ()=>{
-            console.log("gggg",payment_data);
             if(payment_data && orderIdRef.current){
                 orderIdRef.current = null;
-                console.log("BYE",payment_data?.order_id);
                 const data = {order_id:payment_data?.order_id}
                 dispatch(userPayProcess({data,token:userToken}))
                 dispatch(resetPaymentStatus())  

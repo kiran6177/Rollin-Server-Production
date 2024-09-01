@@ -26,7 +26,6 @@ function SocketProvider({children}) {
 
   useEffect(()=>{
     const handleUnreadUpdate = (notifications)=>{
-      console.log("HASNOTIFICATIONS",notifications);
       if(notifications?.length > 0){
           dispatch(setUnread(notifications))
       }else{
@@ -34,7 +33,6 @@ function SocketProvider({children}) {
       }
     }
     const handleUnreadUpdateTheatre = (notifications)=>{
-      console.log("THEATREUNREAD",notifications)
       if(notifications?.length > 0){
         dispatch(setTheatreUnread(notifications))
       }else{
@@ -42,7 +40,6 @@ function SocketProvider({children}) {
       }
       }
     if(socket && userToken){
-        console.log("PROVIDER",socket);
         socket.emit('connect-user',userData?.id)
         socket?.on('has-unread-notifications',handleUnreadUpdate) 
     }

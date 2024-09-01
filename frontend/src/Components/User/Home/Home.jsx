@@ -49,7 +49,6 @@ function Home() {
           return
         }
         if(bannerMovies){
-          console.log("TIMER STARTED");
           timer = setInterval(()=>{
             setIndex(prev => (prev === (bannerMovies?.length - 1) ? 0 : prev + 1));
           },6000)

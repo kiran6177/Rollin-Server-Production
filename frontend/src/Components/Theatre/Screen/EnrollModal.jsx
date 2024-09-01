@@ -39,7 +39,6 @@ function EnrollModal({isOpen,set,movie}) {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     useEffect(()=>{
-        console.log(screenid);
         setScreenId(screenid)
     },[screenid])
 
@@ -85,9 +84,6 @@ function EnrollModal({isOpen,set,movie}) {
         }else if(nowDate > from){
             toast.error('invalid Enroll From Date.')
         }else{
-            console.log("VALIDATED"); 
-            console.log(screen_id);
-            console.log(movie,from,to);
             const data = {
                 screen_id,
                 movie,

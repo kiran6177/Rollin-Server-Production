@@ -62,10 +62,8 @@ function MapModal({isOpen,set,chooseAddress}) {
               const { Geocoder } = await loader.importLibrary('geocoding');
               const geocoder = new Geocoder();
               const res = await geocoder.geocode({location:{lat:position.lat,lng:position.lng}})
-              console.log(res);
               if(res.results[0]){
                  dataObjects.current = res.results.filter(ress=> ress.formatted_address.split(',').length > 3 && ress.formatted_address);
-                console.log(dataObjects)
 
                 setAddresses(dataObjects.current.map(data=>data.formatted_address));
                 info.setContent(`<p style="color:black;">${res.results[0].formatted_address}</p>`);

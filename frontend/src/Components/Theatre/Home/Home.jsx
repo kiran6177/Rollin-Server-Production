@@ -59,7 +59,6 @@ function Home() {
     },[theatreToken])
 
     useEffect(()=>{
-      console.log(selectedFrame);
       const data = {dataFrame:selectedFrame}
       dispatch(theatreGetScreenCollections({data,token:theatreToken}))
     },[selectedFrame])
@@ -83,7 +82,6 @@ function Home() {
     },[movieCollections])
 
     const handleGeneratePdf = ()=>{
-      console.log(startDate,endDate);
       const data = {startDate,endDate};
       dispatch(theatreGetCollectionReport({data,token:theatreToken}))
     }

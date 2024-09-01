@@ -59,7 +59,6 @@ function AddMovie() {
     },[addMoviesData])
 
     const nextPage = ()=>{
-      console.log("next",page);
       dispatch(adminGetAllTMDBMovies({filters:{genre,lang,page,sort,query:debouncedValue},token:adminToken}))
     }
 

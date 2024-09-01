@@ -57,7 +57,6 @@ function BookingsList() {
 
     useEffect(()=>{
         if(debouncedValue !== ''){
-            console.log(debouncedValue);
             dispatch(resetOrdersData());
             setPage(1)
         }

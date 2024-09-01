@@ -16,9 +16,7 @@ function MajorLocation({src,name,set}) {
       const getGeo = async (desc)=>{
         try{
             const res = await getGeocode({address:desc})
-            console.log(res);
             const {lat , lng } = getLatLng(res[0])
-            console.log(lat,lng);
             return {
                 lat,
                 lng
@@ -29,7 +27,6 @@ function MajorLocation({src,name,set}) {
       }
       useEffect(()=>{
         if(data?.length > 0){
-            console.log("MAJOR",data);
             const name = data[0]?.structured_formatting?.main_text;
             getLocData(name,data[0]?.description)
         }
@@ -37,7 +34,6 @@ function MajorLocation({src,name,set}) {
 
       const getLocData = async (name,desc)=>{
         const res = await getGeo(desc)
-        console.log("MAJ RESS",res);
         localStorage.setItem('city',JSON.stringify({name,loc:res}))
         window.location.href = '/'
         set(false)

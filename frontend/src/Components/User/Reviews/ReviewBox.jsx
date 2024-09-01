@@ -10,7 +10,6 @@ function ReviewBox({review}) {
     const dispatch = useDispatch();
     const handleLikeDisLike = (state)=>{
         if(userToken){
-            console.log(review?._id,state);
             const data = {review_id:review?._id,state}
             dispatch(userLikeUnlikeReview({data,token:userToken}))
         }

@@ -39,7 +39,6 @@ function Register() {
 
     const handleRegister = (e)=>{
         e.preventDefault();
-        console.log(name,email,password);
         if(name.trim() === '' && email.trim() === ''  && password.trim() === ''){
             toast.error('Please fill the fields.');
         }else if(name.trim() === ''){

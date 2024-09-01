@@ -114,7 +114,6 @@ function OtpModal({set,setShow}) {
 
    const handleOtpSubmit = (e)=>{
     e.preventDefault()
-    console.log(one,two,three,four,five,six);
     const otp = parseInt(one+two+three+four+five+six)
     dispatch(userVerifyOtp({id:userData?.id,otp}))
    }

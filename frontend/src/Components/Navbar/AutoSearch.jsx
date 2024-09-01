@@ -18,9 +18,7 @@ function AutoSearch({set}) {
       const getGeo = async (desc)=>{
         try{
             const res = await getGeocode({address:desc})
-            console.log(res);
             const {lat , lng } = getLatLng(res[0])
-            console.log(lat,lng);
             return {
                 lat,
                 lng
@@ -39,7 +37,6 @@ function AutoSearch({set}) {
 
       useEffect(()=>{
         if(data?.length > 0){
-            console.log("LOC",data);
             setPlaceArr(data.map(eachObj=>{
                 if(eachObj?.structured_formatting?.main_text){
                     return {
@@ -53,7 +50,6 @@ function AutoSearch({set}) {
 
       const handleLocationSelect = async (name,desc)=>{
         const res = await getGeo(desc)
-        console.log("ressss",res);
         localStorage.setItem('city',JSON.stringify({name,loc:res}))
         window.location.href = '/'
         set(false)

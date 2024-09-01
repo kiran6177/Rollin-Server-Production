@@ -27,7 +27,6 @@ function PersonHome() {
       },[personData])
 
     const nextPage = ()=>{
-        console.log("next",page);
         dispatch(adminGetPersonsFromDB({page,token:adminToken}))
       }
 

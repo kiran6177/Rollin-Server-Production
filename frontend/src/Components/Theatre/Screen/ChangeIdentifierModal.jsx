@@ -101,7 +101,6 @@ function ChangeIdentifierModal({isOpen,set}) {
                 toast.error('Duplicate Identifiers!!')
                 return
             }
-            console.log("VALIDDD",[...tiers].reverse());
             const data = {tiers:[...tiers].reverse(),screen_id,key:'Identifier'}
             dispatch(theatreChangeTierOrder({data,token:theatreToken}))
         }

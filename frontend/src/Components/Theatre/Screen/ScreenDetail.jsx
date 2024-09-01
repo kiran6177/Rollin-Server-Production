@@ -47,7 +47,6 @@ function ScreenDetail() {
 
     useEffect(()=>{
         if(theatreScreenData && theatreScreenData?.length > 0){
-            console.log(screen_id);
             theatreScreenData.map(screen=>{
                 if(screen._id === screen_id){
                     setScreenName(screen.name)

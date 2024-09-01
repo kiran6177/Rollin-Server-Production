@@ -77,7 +77,6 @@ function Profile() {
             for(let imageObj of leftImages){
                 leftImageData.push(imageObj.filename)
             }
-            console.log(leftImageData);
             setImageData(leftImageData) 
         }
     },[images])
@@ -85,7 +84,6 @@ function Profile() {
     const chooseAddress = (address,latlng)=>{
 
         const addressArray = address.split(',').reverse();
-        console.log(addressArray);
         let state;
         let pin ;
             if(addressArray[1].split(' ').length > 1){
@@ -105,10 +103,6 @@ function Profile() {
 
     const handleProfile = async (e)=>{
         e.preventDefault();
-        console.log(imageData);
-        console.log(images);
-        console.log(deleted);
-        console.log(name,email,location,street,landmark,city,state,pincode,latlng);
         const data = {id:theatreData.id,name,email,location,street,landmark,city,state,pincode,latlng,deleted}
 
         const formData = new FormData();
@@ -128,7 +122,6 @@ function Profile() {
     }
 
     const handleImageAdd = ()=>{
-        console.log(imageRef.current.files);
         const imageArray = Array.from(imageRef.current.files)
         const newImages = imageArray.map(image=>{
             return{
@@ -136,7 +129,6 @@ function Profile() {
                 filename: image
                 }
             })
-        console.log(newImages);
         setImages([...images,...newImages]);
         setHide(false)
 

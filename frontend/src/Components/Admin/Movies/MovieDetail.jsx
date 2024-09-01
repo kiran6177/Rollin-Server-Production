@@ -36,7 +36,6 @@ function MovieDetail() {
   },[singleMovieDetail])
 
   useEffect(()=>{
-    console.log(movieid);
     if(moviesData && moviesData.length > 0){
       for(let movie of moviesData){
         if(movie.movie_id == parseInt(movieid)){
@@ -59,28 +58,24 @@ function MovieDetail() {
   },[error])
 
   const handleAddMovie = ()=>{
-    console.log("hvjvj");
     animate("button",{x:[0,'54%']})
     animate1("button",{x:[0,'54%']})
     setTimeout(()=>{setShowConfirm(true)},250)
   }
 
   const handleDisableMovie = ()=>{
-    console.log(singleMovieDetail);
     animate("button",{x:[0,'54%']})
     animate1("button",{x:[0,'54%']})
     setTimeout(()=>dispatch(adminDisableMovie({data:{movie_id:singleMovieDetail?._id},token:adminToken})))
   }
 
   const handleEnableMovie = ()=>{
-    console.log(singleMovieDetail);
     animate("button",{x:[0,'54%']})
     animate1("button",{x:[0,'54%']})
     setTimeout(()=>dispatch(adminEnableMovie({data:{movie_id:singleMovieDetail?._id},token:adminToken})))
   }
 
   const dispactchAddMovie = (release_date)=>{
-    console.log(release_date);
     dispatch(resetDBMovies())
     dispatch(adminAddMovieToDB({movieid,release_date,token:adminToken})) 
   }

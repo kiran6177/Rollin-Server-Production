@@ -19,7 +19,6 @@ function BookingsScreenShows() {
     const scrollRef = useRef(null);
 
     useEffect(()=>{
-        console.log("SCREEN",screen_id);
         const data = {page:1,screen_id}
         dispatch(resetScreenShows())
         dispatch(theatreGetBookingsByScreen({data,token:theatreToken}))

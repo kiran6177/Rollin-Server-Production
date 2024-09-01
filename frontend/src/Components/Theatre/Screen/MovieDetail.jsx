@@ -23,12 +23,10 @@ function MovieDetail() {
     const [showModal,setShowModal] = useState(false);
 
     useEffect(()=>{
-        console.log(movie);
         window.scrollTo(0,0)  
     },[movie])
 
     useEffect(()=>{
-        console.log(screen_id,movie_id);
         if(moviesList?.length > 0){
             moviesList.map(movie=>{
                 if(movie._id === movie_id){
@@ -47,7 +45,6 @@ function MovieDetail() {
     },[movie_id])
 
     const handleEnroll = ()=>{
-      console.log(movie);
       setShowModal(true)
     }
 

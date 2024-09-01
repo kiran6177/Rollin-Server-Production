@@ -17,7 +17,6 @@ function UsersView() {
   },[])
 
   const handleBlockUnblock = (userid)=>{
-    console.log(userid);
     dispatch(blockUnblockUsers({userid,token:adminToken}))
   }
 

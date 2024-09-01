@@ -95,7 +95,6 @@ function MoviesMain() {
       useEffect(()=>{
           let languages = [];
           let genres = [];
-          console.log(page);
         if(filterArray.length === 0){
           setOpen(false)
           dispatch(resetAllMoviesData())

@@ -29,7 +29,6 @@ function Otp() {
 
 
     useEffect(()=>{
-        console.log("use");
         if(one && two && three && four && five && six){
             setEnable(false)
         }else{
@@ -134,19 +133,15 @@ function Otp() {
     }
 
     const handleResend = ()=>{
-        console.log(theatreData.id);
         dispatch(theatreResendOtp({id:theatreData.id}))
     }
 
     const handleOTP = (e)=>{ 
         e.preventDefault();
-        console.log(one,two,three,four,five,six);
         const otp = parseInt(one+two+three+four+five+six)
         if(theatreData.type === 'login'){
-            console.log("log");
             dispatch(theatreLoginOtpVerify({id:theatreData.id,otp}))
         }else{
-            console.log("reg");
             dispatch(theatreRegisterOtpVerify({id:theatreData.id,otp}))
         }
     }

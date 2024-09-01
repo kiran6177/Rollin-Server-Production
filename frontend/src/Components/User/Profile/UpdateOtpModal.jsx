@@ -103,7 +103,6 @@ function UpdateOtpModal({set,isOpen}) {
             
       
         }
-        console.log("KKKK");
 
         return ()=>{
             clearInterval(inter)
@@ -128,9 +127,8 @@ function UpdateOtpModal({set,isOpen}) {
 
    const handleOtpSubmit = (e)=>{
     e.preventDefault()
-    console.log(one,two,three,four,five,six);
     const otp = parseInt(one+two+three+four+five+six)
-    //remmove loc;strge on success
+    //remove localstorage on success
     const data = {otp}
     dispatch(userProfileVerifyOtp({data,token:userToken}))
    }

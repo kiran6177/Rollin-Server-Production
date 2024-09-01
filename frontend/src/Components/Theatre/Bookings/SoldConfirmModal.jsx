@@ -26,7 +26,6 @@ function SoldConfirmModal({isOpen,set}) {
     const {theatreToken} = useSelector(state=>state.theatre)
     const dispatch = useDispatch();
     const handleSold = ()=>{
-        console.log(isOpen);
         dispatch(theatreBookSeat({data:isOpen,token:theatreToken}))
     }
 

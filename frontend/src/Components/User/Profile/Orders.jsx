@@ -76,7 +76,6 @@ function Orders() {
       if(orders?.length > 0 && selected){
           let today = new Date()
           today.setHours(0,0,0,0)
-          console.log(today,"day");
           if(selected === 'UPCOMING'){
             let upcomingOrders = orders.filter(order=>(getShowDate(order.show_date,order.show_time) >= today) && order.refund_id === null);
             setOrdersList(upcomingOrders)
@@ -85,7 +84,6 @@ function Orders() {
             setOrdersList(watchedOrders)
           }else{
             let cancelledOrders = orders.filter(order=>order.refund_id !== null)
-            console.log(cancelledOrders);
             setOrdersList(cancelledOrders)
           }
       }
@@ -158,7 +156,6 @@ function Orders() {
                     </div>
                     {new Date().setUTCHours(0,0,0,0) <= new Date(order.show_date) &&<button onClick={()=>setShowTicket(order)} className='bg-[#f6ae2d] absolute right-0 bottom-0 font-medium px-4 py-1 text-xs rounded-sm tracking-wider'>MORE</button>}
                     <div>
-                      {console.log(Math.abs(getShowDate(order?.show_date,order?.show_time) - new Date()) , getShowDate(order?.show_date,order?.show_time) , new Date() ,"CANCELLLLL")}
                       {!order?.refund_id ? new Date(order?.show_date) === new Date().setHours(0,0,0,0) && (Math.abs(getShowDate(order?.show_date,order?.show_time) - new Date()) > 4 * 60 * 60 * 1000) ? 
                       <button onClick={()=>handleCancelTicket(order?._id)} className='text-black border-2 mb-10 sm:mb-0 border-[#f6ae2d] bg-[#f6ae2d] px-6 py-2 rounded-sm tracking-widest font-medium hover:bg-black hover:text-white transition-all duration-200 ease-linear'>CANCEL TICKET</button>
                       :

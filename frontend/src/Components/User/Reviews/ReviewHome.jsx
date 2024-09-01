@@ -45,7 +45,6 @@ function ReviewHome() {
             if(singleMovieDetail?._id === movie_id){
                setMovie(singleMovieDetail)
                if(singleMovieDetail?.rating){
-                console.log(Math.floor(singleMovieDetail.rating/2));
                 setStars(prev=>prev.map((each,i)=>{
                     if(i < Math.floor(singleMovieDetail.rating/2)){
                         return true
@@ -74,7 +73,6 @@ function ReviewHome() {
 
     useEffect(()=>{
         if(!reviews){
-            console.log("ENTE");
             dispatch(userGetReviews({movie_id,page:1}))
         }
         
@@ -82,7 +80,6 @@ function ReviewHome() {
 
     useEffect(()=>{
         return ()=>{
-            console.log("EXI");
             dispatch(resetReviewData())
         }
     },[])
@@ -101,7 +98,6 @@ function ReviewHome() {
     }
     const handleLikeDisLike = (review,state)=>{
         if(userToken){
-            console.log(review?._id,state);
             const data = {review_id:review?._id,state}
             dispatch(userLikeUnlikeReview({data,token:userToken}))
         }

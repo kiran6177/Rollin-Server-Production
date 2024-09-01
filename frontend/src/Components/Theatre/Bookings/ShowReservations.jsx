@@ -75,10 +75,8 @@ function ShowReservations() {
     },[error])
 
     const handleSeatSelection = (seats,key)=>{
-        console.log(seats,key);
         const seatData = [seats?.seat_number]
         const data = {show_id,seatData,date}
-        console.log(data);
         setShowSold(data)
     }
 

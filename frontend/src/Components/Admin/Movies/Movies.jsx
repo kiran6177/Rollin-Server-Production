@@ -50,7 +50,6 @@ function Movies() {
 
 
     const nextPage = ()=>{
-      console.log("next",page);
       dispatch(adminGetMoviesFromDB({page:page+1,token:adminToken}))
       setPage((prev)=>prev+1)
     }

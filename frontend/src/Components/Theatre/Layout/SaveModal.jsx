@@ -42,8 +42,6 @@ function SaveModal({isOpen,set,setUpdate,tierData,layout}) {
     const navigate = useNavigate()
 
     useEffect(()=>{
-        console.log(screen_id,tier_id);
-        console.log(tierData,layout);
         if(layout){
             let layoutArr = Object.entries(layout).map(([objKey,objValue])=>{
                 return {
@@ -71,7 +69,6 @@ function SaveModal({isOpen,set,setUpdate,tierData,layout}) {
         let updatedLayouts = layouts.map((obj,i)=>{
             let objKey = Object.keys(obj)[0];
             let objValue = obj[objKey];
-            console.log(objKey,objValue);
             if(key === objKey && index === i){
                 return {
                     [value]:objValue

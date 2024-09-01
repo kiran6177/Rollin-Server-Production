@@ -59,10 +59,8 @@ function MovieDetail() {
 
     useEffect(()=>{
       if(singleMovieDetail && singleMovieDetail?._id === movie_id){
-        console.log(singleMovieDetail);
         setMovie(singleMovieDetail)
         if(singleMovieDetail?.rating){
-          console.log(Math.floor(singleMovieDetail.rating/2));
           setStars(prev=>prev.map((each,i)=>{
               if(i < Math.floor(singleMovieDetail.rating/2)){
                   return true

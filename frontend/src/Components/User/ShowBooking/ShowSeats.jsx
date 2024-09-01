@@ -109,7 +109,6 @@ function ShowSeats() {
     },[singleShow])
 
     const handleSeatSelection = (seats,key)=>{
-        console.log(seats ,key,ticketCount); 
         const selectedSeats = [];
         if(seats?.status === 'SELECTED'){
             selectedSeats.push(seats?.seat_number)
@@ -119,7 +118,6 @@ function ShowSeats() {
                 selectedSeats.push(key+(clicked+i))
             }
         }
-        console.log(selectedSeats);
         const newShowData = JSON.parse(JSON.stringify(singleShow))
         const updatedReservations = newShowData.shows[0].reservations.map(seatObj=>{
             if(Object.keys(seatObj)[0] === key){
@@ -178,7 +176,6 @@ function ShowSeats() {
     },[seatData])
 
     const handlePayment = ()=>{
-        console.log(seatData);
         const data = {date,show_id,seatData}
         dispatch(userSeatReservation({data,token:userToken}))
         dispatch(setSelectedSeats(seatData))

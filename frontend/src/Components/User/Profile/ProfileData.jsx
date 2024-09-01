@@ -75,8 +75,6 @@ function ProfileData() {
     }
 
     const handleEdit = ()=>{
-      console.log(imageRef.current.files[0]);
-      console.log(profileState);
       const formdata = new FormData()
       formdata.append('firstname',profileState.firstname)
       formdata.append('lastname',profileState.lastname)
@@ -149,7 +147,6 @@ function ProfileData() {
     }
 
     const handleEditEmail = ()=>{
-      console.log(profileState.email);
       if(profileState.email.trim() === ''){
         toast.error('Please enter a valid email!!')
       }else if(!emailRegex.test(profileState.email)){

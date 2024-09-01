@@ -51,7 +51,6 @@ function Navbar({hide}) {
   },[isLoading])
 
   useEffect(()=>{
-    console.log("loading....");
     setIsLoading(true);
     
   },[key])
@@ -64,7 +63,6 @@ function Navbar({hide}) {
 
   useEffect(()=>{
     const handleNewNotification = (notification)=>{
-      console.log("NEW",notification);
       dispatch(updateUnread(notification))
       setShowNotification(notification);
       setTimeout(()=>{

@@ -43,7 +43,6 @@ function SeatLayout() {
             }
             return
         }
-        console.log(theatreScreenData); 
         if(theatreScreenData?.length > 0){
             theatreScreenData.map(screenObj=>{
                 if(screenObj._id === screen_id){
@@ -256,7 +255,7 @@ function SeatLayout() {
                 </div>
             </div>
             <div className='my-8'>
-                <DndContext onDragEnd={handleDragEnd} onDragStart={(e)=>console.log("DRAGSTART",e)}>
+                <DndContext onDragEnd={handleDragEnd} >
                 <span style={{wordSpacing:'2px'}} className='text-white text-xs bg-[#d24d4d]  py-2 px-6 border-2 rounded-md border-[#d24d4d]'>Note: Horizontal partitions are included in the grid. Set the layout accordingly.</span>
                 {
                     seatId <= tierData?.seats &&

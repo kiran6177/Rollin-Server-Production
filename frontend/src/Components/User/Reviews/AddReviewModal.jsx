@@ -31,7 +31,6 @@ function AddReviewModal({isOpen,set}) {
   const dispatch = useDispatch();
 
   const handleReviewAdd = ()=>{
-    console.log(stars,review,movie_id);
     if(review.trim() === ""){
         toast.error("Please write your review!!")
     }else{

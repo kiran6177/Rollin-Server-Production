@@ -49,7 +49,6 @@ function ChangeShowModal({isOpen,set,enrolledMovies}) {
     },[isOpen])
 
     useEffect(()=>{  
-        console.log(reservationStatus);
         if(reservationStatus !== null && (reservationStatus?.hasData === false && reservationStatus?.hasBookings === false && reservationStatus?.hasFilledBookings === false)){
             setShow(isOpen)
         }else if(reservationStatus !== null && reservationStatus?.hasFilledBookings === true){ 
@@ -79,26 +78,19 @@ function ChangeShowModal({isOpen,set,enrolledMovies}) {
         setShow(prev=>{
             return {...prev,movie_id:movie ? movie.movie_id : null}
         })
-        console.log(show,movie);
         setMovieSelect(false)
     }
 
     const handleConfirm = ()=>{
-        console.log(screen_id);
-        console.log(show);
         dispatch(theatreChangeShowMovie({data:{screen_id,showdata:show},token:theatreToken}))
         set(false)
     }
 
     const handleBookingCancel = ()=>{
-        console.log("cancel");
-        console.log(isOpen);
         dispatch(theatreCancelShowBookings({data:{screen_id,showdata:isOpen},token:theatreToken}))
     }
 
     const handleNoBookingCancel = ()=>{
-        console.log("Nocancel");
-        console.log(isOpen);
         dispatch(theatreCancelShowBookings({data:{screen_id,showdata:isOpen},token:theatreToken}))
     }
 

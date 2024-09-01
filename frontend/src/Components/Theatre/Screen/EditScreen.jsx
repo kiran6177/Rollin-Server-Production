@@ -60,7 +60,6 @@ function EditScreen() {
     const [isValidWithLayout,SetIsValidWithLayout] = useState(false)
 
     const getDaysDifference = (enroll_to_date)=>{
-        console.log("DAYSS");
         const now = new Date()
         const enrolled = new Date(enroll_to_date)  
         const differenceInMilli = Math.abs(now - enrolled)
@@ -71,7 +70,6 @@ function EditScreen() {
 
     useEffect(()=>{
         if(theatreScreenData && theatreScreenData?.length > 0){
-            console.log(screen_id);
             theatreScreenData.map(screen=>{
                 if(screen._id === screen_id){
                     setScreenName(screen.name)
@@ -159,11 +157,9 @@ function EditScreen() {
 
  
     useEffect(()=>{ 
-        console.log("TIER",tier , typeof tier);
         let tierInt = parseInt(tier)
         if(tierInt !== 0){
             if(tierInt > 0){
-                console.log(tierInt);
                 setTierCount(tierInt)
             }else{
                 toast.error('Enter valid number.')
@@ -176,7 +172,6 @@ function EditScreen() {
 
 
     const handleCreateShow = ()=>{
-        console.log(time.format());
         let timetoSave = (time.hour()%12 !== 0 ? time.hour()%12 : 12)+':'+(time.minute() < 10 ? '0'+time.minute() : time.minute() )+(time.hour() >= 12  ? 'PM' : 'AM')
         for(let i = 0 ; i < showData.length ; i++){
             if(showData[i].showtime === timetoSave){
@@ -227,7 +222,6 @@ function EditScreen() {
         
 
         const tierData = []
-        console.log(tierCount); 
         if(tierCount > 0){
             for(let i = 1 ; i <= tierCount ; i++){
                 let isExisting = false;
@@ -280,8 +274,6 @@ function EditScreen() {
             existingTiers.forEach((singleTier,index)=>{
 
                 if(singleTier.name === existTier.name && (i !== index)){
-                    console.log("exist",singleTier.name,index);
-                    console.log("existOne",existTier.name,i);
                     isExisting = true
                 }
             })
@@ -317,7 +309,6 @@ function EditScreen() {
             })
             i++
         }
-        console.log("TIERDATA",tierData);
         if(showData?.length === 0 ){
             toast.error('Complete the details.')
         }else if(showData?.length === 0){
@@ -327,15 +318,12 @@ function EditScreen() {
         }else if(speakers.front < 1 || speakers?.left < 1 || speakers?.right < 1 || speakers?.rear < 1 || speakers?.center < 0 || speakers?.subwoofers < 0){
             toast.error('Provide valid sound details.')
         }else {
-            console.log("VALIDATED");
-            console.log(screenName);
             const data = {screen_id:screen_id,name:screenName,tierData,showData,speakers}
             dispatch(theatreEditScreen({data,token:theatreToken}))
         }
     }
 
     const removeMovie = (movie_id)=>{
-        console.log(screen_id,movie_id);
         dispatch(theatreRemoveMovieFromScreen({data:{screen_id,movie_id},token:theatreToken}))
         setShowRemove(false)
     }
@@ -351,7 +339,6 @@ function EditScreen() {
         if(movie.enroll_to > to){
             toast.error('Movie has already enrolled above this range.')
         }else{
-            console.log(screen_id,movie_id,to);
             dispatch(theatreExtendMovieForScreen({data:{screen_id,movie_id,enroll_toDate:to},token:theatreToken}))
         }
         setShowExtend(false)

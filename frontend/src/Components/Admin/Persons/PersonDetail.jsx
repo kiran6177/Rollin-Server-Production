@@ -14,7 +14,6 @@ function PersonDetail() {
     const {personData,singlePersonDetail} = useSelector(state=>state.movie)
 
     useEffect(()=>{
-        console.log(personid);
         if(personData && personData.length > 0){
           for(let person of personData){
             if(person.person_id == parseInt(personid)){

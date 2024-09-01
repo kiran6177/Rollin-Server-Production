@@ -21,7 +21,6 @@ function Login() {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        console.log("dfv");
         if(adminToken){
             navigate('/admin',{replace:true})
             return
@@ -50,10 +49,8 @@ function Login() {
         }else if(!emailRegex.test(email)){
             toast.error('Email is Invalid!!')
         }else if(!passwordRegex.test(password)){
-            console.log("fdv");
             toast.error('Password is Invalid!!')
         }else{
-            console.log("1");
             dispatch(adminLogin({email,password}))
         }
     }

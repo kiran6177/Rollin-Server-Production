@@ -31,7 +31,6 @@ function EmailModal({showMail,set}) {
     },[userData])
 
     const handleEmailSubmit = ()=>{
-        console.log(email);
         if(email.trim() === '' ){
             toast.error('Enter a valid Email.');
         }else if(!emailRegex.test(email)){

@@ -55,7 +55,6 @@ function Login() {
 
     const handleLogin = (e)=>{
         e.preventDefault();
-        console.log(email,password);
         if( email.trim() === ''  && password.trim() === ''){
             toast.error('Please fill the fields.');
         }else if(email.trim() === '' ){

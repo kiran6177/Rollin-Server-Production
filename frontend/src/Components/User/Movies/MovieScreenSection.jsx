@@ -26,7 +26,6 @@ function MovieScreenSection() {
         const date = new Date();
         date.setHours(0,0,0,0)
         const month = getMonthByNumber(date.getMonth() + 1)
-        console.log("TODAY",date);
         setMonth(month)
         const newDates = []
         const newDatesObj = {}
@@ -37,7 +36,6 @@ function MovieScreenSection() {
             newDatesObj[filteredDate] = currentDate
             newDates.push(filteredDate)
         }
-        console.log(newDatesObj);
         setDatesObj(newDatesObj)
         setDates(newDates)
     }
@@ -69,7 +67,6 @@ function MovieScreenSection() {
             dateOf.setUTCHours(0,0,0,0)
             const dateOfT = dateOf.toISOString()
             const data = {date:dateOfT,movie_id}
-            console.log(data);
             dispatch(userGetShowDataByMovie(data))
         }
     },[selectedDate,singleMovieDetail])
@@ -79,7 +76,6 @@ function MovieScreenSection() {
         dateOf.setDate(dateOf.getDate() + 1)
         dateOf.setUTCHours(0,0,0,0)
         const dateOfT = dateOf.toISOString()
-        console.log(show);
         navigate(`/screenwithmovies/show?show_id=${show?.show_id}&date=${dateOfT}&theatre_id=${show?.theatre_id}`,{state:{redirectURL:`/screenwithmovies/show?show_id=${show?.show_id}&date=${dateOfT}&theatre_id=${show?.theatre_id}`}})
     }
 

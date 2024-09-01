@@ -87,7 +87,6 @@ function ChangeOrderModal({isOpen,set}) {
             existOrder.add(tier.order)
         }
         const sortedTier = insertionSortForTiers([...tiers])
-        console.log("SORTED",sortedTier);
         const data = {screen_id,tiers:sortedTier}
         dispatch(theatreChangeTierOrder({data,token:theatreToken}))
     }

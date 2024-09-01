@@ -39,7 +39,6 @@ function TheatreNavbar({hide}) {
 
     useEffect(()=>{
       const handleNewNotification = (notification)=>{
-        console.log("NEW THEATRE",notification);
         dispatch(updateTheatreUnread(notification))
         setShowNotification(notification);
         setTimeout(()=>{

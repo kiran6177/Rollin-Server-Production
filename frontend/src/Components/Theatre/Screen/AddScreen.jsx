@@ -94,7 +94,6 @@ function AddScreen() {
         const tierInt = parseInt(tier) 
         if(tierInt !== 0){
             if(tierInt > 0){
-                console.log(tierInt);
                 setTierCount(tierInt)
             }else{
                 toast.error('Enter valid number.')
@@ -106,9 +105,7 @@ function AddScreen() {
     },[tier])
 
     const handleCreateShow = ()=>{
-        console.log(time.format());
         let timetoSave = (time.hour()%12 !== 0 ? time.hour()%12 : 12)+':'+(time.minute() < 10 ? '0'+time.minute() : time.minute() )+(time.hour() >= 12  ? 'PM' : 'AM')
-        console.log('TIME',timetoSave);
         for(let i = 0 ; i < showData.length ; i++){
             if(showData[i].showtime === timetoSave){
                 toast.error('Show already exists.')
@@ -122,7 +119,6 @@ function AddScreen() {
 
     const handleShowSelect = (movie,show)=>{
         setShows(shows.map(sho=>{
-            console.log(sho);
             if(sho.showtime === show.showtime){
                 return {
                     ...sho,
@@ -163,9 +159,6 @@ function AddScreen() {
 
 
     const handleSave = ()=>{
-        
-        console.log("SHOWDATA",showData);
-        console.log("SPEAKERS",speakers);
         const tierData = []
         for(let i = 1 ; i <= tierCount ; i++){
             if(tierName[`name${i}`].trim() === ''){
@@ -195,7 +188,6 @@ function AddScreen() {
                 rate:tierRate[`rate${i}`]
             })
         }
-        console.log(tierData);
         if(showData?.length === 0 && tierData?.length === 0 ){
             toast.error('Complete the details.')
         }else if(showData?.length === 0){
@@ -207,8 +199,6 @@ function AddScreen() {
         }else if(speakers.front < 1 || speakers?.left < 1 || speakers?.right < 1 || speakers?.rear < 1 || speakers?.center < 0 || speakers?.subwoofers < 0){
             toast.error('Provide valid sound details.')
         }else {
-            console.log("VALIDATED");
-            console.log(screenName);
             const data = {theatreid:theatreData?.id,name:screenName,tierData,showData,speakers}
             dispatch(theatreAddScreen({data,token:theatreToken}))
         }
