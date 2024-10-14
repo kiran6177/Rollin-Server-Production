@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-auth:latest
+        image: asia-south1-docker.pkg.dev/rollin-deployment-437207/kiran6177/rollin-auth:latest
         env:
         - name: CLIENT_ID
           valueFrom:
@@ -103,11 +103,11 @@ spec:
               key: TWILIO_VERIFY_SID
         resources:
           requests:
-            cpu: "100m"  
-            memory: "128Mi"  
+            cpu: "150m"  
+            memory: "256Mi"  
           limits:
-            cpu: "100m"  
-            memory: "128Mi"
+            cpu: "200m"  
+            memory: "512Mi"
         ports:
         - containerPort: 4001
 ---

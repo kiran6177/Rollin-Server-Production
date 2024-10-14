@@ -71,9 +71,9 @@ spec:
           requests:
             cpu: "0.2"  
             memory: "500Mi"  
-            storage: "750Mi"
+            storage: "500Mi"
           limits:
             cpu: "0.4"  
-            memory: "800Mi"  
-            storage: "1Gi"  
+            memory: "550Mi"  
+            storage: "750Mi"  
         storageClassName: standard

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: movie
-        image: asia-south1-docker.pkg.dev/rollin-deployment/kiran6177/rollin-movie:latest
+        image: asia-south1-docker.pkg.dev/rollin-deployment-437207/kiran6177/rollin-movie:latest
         env:
         - name: PORT
           valueFrom:
